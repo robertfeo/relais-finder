@@ -3,20 +3,18 @@
 export default function RelayHeaderDetails({ relayGroups }) {
 
     return (
-        <div className="container">
-            <h3 className="flex-1 font-semibold">Gruppen</h3>
+        <div>
             {relayGroups.map(relayGroup => {
                 const { name, sachnummer, siNaName } = relayGroup
 
                 return (
-                    <div className="flex-1" key={relayGroup.id}>
-                        <p>Sachnummer: {sachnummer}</p>
+                    <div key={relayGroup.id}>
                         <p>Name: {name}</p>
+                        <p>Sachnummer: {sachnummer}</p>
                         <p>Sicherheitsnachweis: {siNaName}</p>
                     </div>
                 )
             })}
-
         </div>
     )
 }

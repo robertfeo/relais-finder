@@ -1,12 +1,21 @@
-import TablesContacts from './TablesContacts'
-import TablesSpools from './TablesSpools'
+import { Suspense, useEffect } from "react";
+import TablesContacts from './TablesContacts';
+import TablesSpools from './TablesSpools';
 
 export default function RelayTables({ relay }) {
 
+    useEffect(() => {
+        console.log(relay);
+    }, [relay]);
+
     return (
-        <div className="flex flex-col mr-auto ml-auto mb-4 py-10 space-y-10 w-9/12">
-            <TablesSpools spools={relay.spule || '-'} />
-            <TablesContacts className="" contacts={relay.kontakt || '-'} />
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+            {Array.isArray(relay) && relay.map(relais => (
+                <div className="flex flex-col bg-orange-300">
+                    <TablesSpools spools={relais.spule || '-'} />
+                    <TablesContacts contacts={relais.kontakt || '-'} />
+                </div>
+            ))}
+        </Suspense>
     )
 }

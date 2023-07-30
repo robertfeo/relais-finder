@@ -9,8 +9,8 @@ import {
 
 export default function TablesContacts({ contacts }) {
     return (
-        <div className="flex-1">
-            <Table className="w-11/12 font-primary">
+        <div>
+            <Table className="font-primary">
                 {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
                 <TableHeader>
                     <TableRow>

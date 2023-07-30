@@ -1,5 +1,5 @@
 "use client"
-import RelayDetails from "@/components/RelayDetails";
+import Relay from "@/components/Relay";
 import { useEffect, useState } from "react";
 
 export default function Page({ params }) {
@@ -28,13 +28,8 @@ export default function Page({ params }) {
     return (
         <>
             <div className="container bg-blue-200">
-                <div className="flex flex-row">
-                <RelayDetails id={query} />
-                <RelayDetails id={query} />
-                </div>
+                <Relay id={query} />
             </div>
         </>
     )
-
 }
-
