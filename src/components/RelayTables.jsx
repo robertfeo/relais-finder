@@ -1,19 +1,19 @@
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import TablesContacts from './TablesContacts';
 import TablesSpools from './TablesSpools';
 
-export default function RelayTables({ relay }) {
-
-    useEffect(() => {
-        console.log(relay);
-    }, [relay]);
-
+export default function RelayTables({ relayData }) {
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            {Array.isArray(relay) && relay.map(relais => (
-                <div className="flex flex-col bg-orange-300">
-                    <TablesSpools spools={relais.spule || '-'} />
-                    <TablesContacts contacts={relais.kontakt || '-'} />
+            {[relayData].map(relais => (
+                <div key={relais.id} className="flex basis-8/12 flex-col space-y-10 bg-orange-300">
+                    <div>
+                        <TablesSpools spools={relais.spule || '-'} />
+                    </div>
+
+                    <div>
+                        <TablesContacts contacts={relais.kontakt || '-'} />
+                    </div>
                 </div>
             ))}
         </Suspense>

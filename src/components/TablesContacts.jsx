@@ -20,18 +20,35 @@ export default function TablesContacts({ contacts }) {
                         <TableHead className="font-bold">Kontakt schließt nicht</TableHead>
                     </TableRow>
                 </TableHeader>
+
                 <TableBody>
-                    {contacts.map(contact => (
-                        <TableRow key={contact.kontakt_id}>
-                            <TableCell className="font-medium">{contact.kontakt_id}</TableCell>
-                            <TableCell className="">{contact.ortASB || '-'}</TableCell>
-                            <TableCell className="">{contact.zweck}</TableCell>
-                            <TableCell className="">{contact.kontaktSchliestNicht || '-'}</TableCell>
-                        </TableRow>
-                    ))}
+                    {contacts
+                        .filter(contact => contact.kontakt_id.startsWith('A'))
+                        .map(contact => (
+                            <TableRow key={contact.kontakt_id}>
+                                <TableCell className="font-medium">{contact.kontakt_id}</TableCell>
+                                <TableCell className="">{contact.ortASB || '-'}</TableCell>
+                                <TableCell className="">{contact.zweck}</TableCell>
+                                <TableCell className="">{contact.kontaktSchliestNicht || '-'}</TableCell>
+                            </TableRow>
+                        ))
+                    }
+                </TableBody>
+
+                <TableBody>
+                    {contacts
+                        .filter(contact => contact.kontakt_id.startsWith('R'))
+                        .map(contact => (
+                            <TableRow key={contact.kontakt_id}>
+                                <TableCell className="font-medium">{contact.kontakt_id}</TableCell>
+                                <TableCell className="">{contact.ortASB || '-'}</TableCell>
+                                <TableCell className="">{contact.zweck}</TableCell>
+                                <TableCell className="">{contact.kontaktSchliestNicht || '-'}</TableCell>
+                            </TableRow>
+                        ))
+                    }
                 </TableBody>
             </Table>
         </div>
-
     )
 }
