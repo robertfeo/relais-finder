@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Suspense, useEffect, useState } from "react";
+import NavbarCustom from "./NavbarCustom";
 import RelayHeaderDetails from "./RelayHeaderDetails";
 import RelayTables from "./RelayTables";
 import { toast } from "./ui/use-toast";
@@ -28,9 +29,12 @@ export default function Relay({ id }) {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             {result.map(relais => (
-                <div className="flex flex-row pt-10 pb-10 bg-slate-200" key={relais.id} >
-                    <RelayHeaderDetails relayData={relais} />
-                    <RelayTables relayData={relais} />
+                <div className="flex flex-col md:flex-col pt-10 pb-10" key={relais.id} >
+                    <NavbarCustom id={relais.id}/>
+                    <div className="flex flex-col md:flex-row pt-10 pb-10" key={relais.id} >
+                        <RelayHeaderDetails relayData={relais} />
+                        <RelayTables relayData={relais} />
+                    </div>
                 </div>
             ))}
         </Suspense>

@@ -18,10 +18,10 @@ module.exports = {
         sm: '2rem',
         lg: '4rem',
         xl: '5rem',
-        '2xl': '6rem',
+        '2xl': '5rem',
       },
       screens: {
-        "2xl": "1400px",
+        "2xl": "1450px",
       },
     },
     extend: {
