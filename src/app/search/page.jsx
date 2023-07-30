@@ -19,7 +19,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="container mx-auto md:container md:mx-auto flex flex-col">
+      <div className="container md:container md:mx-auto flex flex-col antialiased scroll-smooth">
         <div className="flex flex-col items-center flex-wrap mt-10 mb-5">
           <div className="relative">
             <div className="absolute">

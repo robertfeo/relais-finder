@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center h-screen antialiased">
 
         <div className="fixed top-4 inset-x-0 text-center p-24">
           <div className="relative">

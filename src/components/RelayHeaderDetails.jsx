@@ -15,51 +15,57 @@ export default function RelayHeaderDetails({ relayData }) {
     };
 
     return (
-        <div className="basis-4/12 font-primary">
+        <div className="basis-4/12 font-primary antialiased">
             {[relayData].map(relais => {
                 return (
                     <div className="text-zinc-600 space-y-5 px-2" key={relais.id}>
 
-                        <div className="pl-2">
-                            <h1 className="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-5xl dark:text-white">{relais.id}</h1>
-                            <p className="mb-10 text-base font-semibold">{relais.name || '-'}</p>
-                            <p className="text-base">Typ: {relais.relais.typ || '-'}</p>
+                        <div className="">
+                            <div className="bg-zinc-50 py-5 flex flex-col mb-5 rounded-xl pl-3">
+                                <h1 className="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-5xl dark:text-white">{relais.id}</h1>
+                                <p className="text-base font-semibold">{relais.name || '-'}</p>
+                            </div>
+
+                            <p className="pl-2 text-base">Typ: {relais.relais.typ || '-'}</p>
                         </div>
 
 
                         <div class="flex flex-col p-2 space-y-10 dark:bg-gray-800 dark:border-gray-700">
 
-                            <div className="flex flex-col">
-                                <h2 className="text-xl  font-semibold leading-none tracking-tight md:text-xl lg:text-xl dark:text-white font-primary mb-2">Anzugsprüfung</h2>
-                                <div className="flex flex-row justify-start">
-                                    {relayData.kontakt
-                                        .filter(kontakt => kontakt.kontakt_id.startsWith('A')) // Filters the array
-                                        .map(kontakt => {
-                                            return (
-                                                <div>
-                                                    <span className={getRandomColorClass() + " text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full"}>{kontakt.kontakt_id}</span>
-                                                </div>
-                                            )
-                                        })}
+                            <div className="flex flex-row space-x-5">
+                                <div className="flex flex-col basis-1/2">
+                                    <h2 className="text-xl font-semibold leading-none tracking-tight md:text-xl lg:text-xl dark:text-white font-primary mb-2">Anzugsprüfung</h2>
+                                    <div className="flex flex-row justify-left flex-wrap">
+                                        {relayData.kontakt
+                                            .filter(kontakt => kontakt.kontakt_id.startsWith('A')) // Filters the array
+                                            .map(kontakt => {
+                                                return (
+                                                    <div className="py-0.5">
+                                                        <span className={getRandomColorClass() + " text-xs font-semibold mr-1 px-2.5 py-0.5 rounded-full"}>{kontakt.kontakt_id}</span>
+                                                    </div>
+                                                )
+                                            })}
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col basis-1/2">
+                                    <h1 className="text-xl font-semibold leading-none tracking-tight md:text-xl lg:text-xl dark:text-white font-primary mb-2">Abfallprüfung</h1>
+                                    <div className="flex flex-row justify-start flex-wrap">
+                                        {relayData.kontakt
+                                            .filter(kontakt => kontakt.kontakt_id.startsWith('R')) // Filters the array
+                                            .map(kontakt => {
+                                                return (
+                                                    <div className="py-0.5">
+                                                        <span className={getRandomColorClass() + " text-xs font-semibold mr-1 px-2.5 py-0.5 rounded-full"}>{kontakt.kontakt_id}</span>
+                                                    </div>
+
+                                                )
+                                            })}
+                                    </div>
                                 </div>
                             </div>
 
 
-                            <div className="flex flex-col">
-                                <h1 className="text-xl font-semibold leading-none tracking-tight md:text-xl lg:text-xl dark:text-white font-primary mb-2">Abfallprüfung</h1>
-                                <div className="flex flex-row justify-start">
-                                    {relayData.kontakt
-                                        .filter(kontakt => kontakt.kontakt_id.startsWith('R')) // Filters the array
-                                        .map(kontakt => {
-                                            return (
-                                                <div>
-                                                    <span className={getRandomColorClass() + " text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full"}>{kontakt.kontakt_id}</span>
-                                                </div>
-
-                                            )
-                                        })}
-                                </div>
-                            </div>
 
 
                             <div className="flex flex-col">
