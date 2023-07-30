@@ -20,7 +20,7 @@ export default function Page() {
   return (
     <>
       <div className="container mx-auto md:container md:mx-auto bg-slate-400 flex flex-col">
-        <div className="flex flex-col items-center flex-wrap mt-5 mb-5 bg-yellow-200">
+        <div className="flex flex-col items-center flex-wrap mt-10 mb-5 bg-yellow-200">
           <div className="relative">
             <div className="absolute">
               <h1 className="text-5xl font-semibold text-gray-800 blur-xl hover:blur-3xl opacity-40 font-primary">RelaisFinder</h1>
