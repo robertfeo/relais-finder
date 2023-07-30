@@ -25,8 +25,8 @@ export default function SearchRelay({ q, searchBy }) {
             }).catch((error) => {
                 toast({
                     title: "Suchkriterium nicht gefunden",
-                    description: error.message,
-                    variant: "warning",
+                    description: "Bitte versuche es erneut.",
+                    variant: "default",
                 })
             })
         } catch (error) {
@@ -36,8 +36,6 @@ export default function SearchRelay({ q, searchBy }) {
             })
         }
     }
-
-
 
     return (
         <div className="flex flex-col bg-orange-300 w-4/6 space-y-5">

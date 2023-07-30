@@ -19,7 +19,7 @@ export async function GET(req: Request) {
         case 'typ':
             where = {
                 relais: {
-                    typ: { contains: query }
+                    typ: { startsWith: query }
                 }
             }
             break;
@@ -58,7 +58,9 @@ export async function GET(req: Request) {
         case 'kontakt':
             where = {
                 kontakt: {
-                    kontakt_id: { contains: query }
+                    some: {
+                        kontakt_id: { contains: query }
+                    }
                 }
             }
             break;
@@ -66,7 +68,9 @@ export async function GET(req: Request) {
             //  TODO: This is not working
             where = {
                 relaisGruppe: {
-                    sachnummer: { contains: query }
+                    some: {
+                        sachnummer: { contains: query }
+                    }
                 }
             }
             break;

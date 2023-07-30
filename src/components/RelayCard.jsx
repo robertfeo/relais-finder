@@ -14,7 +14,7 @@ export default function RelayCard({ name, id, type }) {
     return (
         <Card>
             <CardHeader className="flex flex-col md:flex-row sm:flex-col lg:flex-row items-center justify-between space-x-5">
-                <div className='flex flex-col items-start space-y-2 bg-yellow-500'>
+                <div className='flex flex-col items-start space-y-2 bg-yellow-300'>
                     <CardTitle className="whitespace-nowrap">{name}</CardTitle>
                     <CardDescription>
                         <Label htmlFor="email">Typ: {type}</Label>

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { Suspense, useEffect, useState } from "react";
 import RelayHeaderDetails from "./RelayHeaderDetails";
-import TablesContacts from "./TablesContacts";
-import TablesSpools from "./TablesSpools";
+import RelayTables from "./RelayTables";
+import { toast } from "./ui/use-toast";
 
 export default function RelayDetails({ id }) {
 
@@ -17,6 +17,11 @@ export default function RelayDetails({ id }) {
             setResult(response.data);
         }).catch((error) => {
             console.log(error);
+            toast({
+                title: "Relais nicht gefunden",
+                description: "Bitte versuche es erneut.",
+                variant: "warning",
+            })
         });
     }
 
@@ -29,7 +34,6 @@ export default function RelayDetails({ id }) {
                         <h1 className="text-xl font-medium mb-2 py-10">{relais.name || '-'}</h1>
                         <div className="grid grid-cols-2 gap-8 mb-4">
 
-
                             <div className="container">
                                 <h3 className="font-semibold">Details</h3>
                                 <p>Typ: {relais.relais.typ || '-'}</p>
@@ -38,11 +42,7 @@ export default function RelayDetails({ id }) {
 
                         </div>
 
-                        <div className="flex flex-col mr-auto ml-auto mb-4 py-10 space-y-10 w-9/12">
-                            <TablesSpools spools={relais.spule || '-'} />
-                            <TablesContacts className="" contacts={relais.kontakt || '-'} />
-
-                        </div>
+                        <RelayTables relay={relais} />
 
                     </div>
                 ))}
