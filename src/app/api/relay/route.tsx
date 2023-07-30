@@ -13,8 +13,8 @@ export async function GET(request: Request, response: Response) {
       },
     },
     include: {
-      relaisGruppe: true,
       relais: true,
+      relaisGruppe: true,
       spule: true,
       kontakt: true,
     },

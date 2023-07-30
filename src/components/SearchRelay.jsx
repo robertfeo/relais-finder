@@ -22,7 +22,6 @@ export default function SearchRelay({ q, searchBy }) {
         try {
             const res = await axios.get(`/api/relay/search?q=${q}&searchBy=${searchBy}`).then((response) => {
                 setResults(response.data)
-                console.log(response.data)
             }).catch((error) => {
                 toast({
                     title: "Suchkriterium nicht gefunden",
@@ -38,13 +37,15 @@ export default function SearchRelay({ q, searchBy }) {
         }
     }
 
+
+
     return (
         <div className="flex flex-col bg-orange-300 w-4/6 space-y-5">
             {results.map(result => (
                 <RelayCard
                     name={result.name}
                     id={result.id}
-                    typ={result.relais.typ}
+                    type={result.relais?.typ ?? 'N/A'}
                     key={result.id}
                 />
             ))}
