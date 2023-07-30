@@ -31,7 +31,7 @@ export default function Relay({ id }) {
             {result.map(relais => (
                 <div className="flex flex-col md:flex-col pt-10 pb-10" key={relais.id} >
                     <NavbarCustom id={relais.id} />
-                    <div className="flex flex-col md:flex-row pt-10 pb-10" key={relais.id} >
+                    <div className="flex flex-col md:flex-row pt-10 pb-10 space-x-10" key={relais.id} >
                         <RelayHeaderDetails relayData={relais} />
                         <RelayTables relayData={relais} />
                     </div>

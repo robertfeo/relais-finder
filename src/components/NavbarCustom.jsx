@@ -1,12 +1,11 @@
 import { Suspense } from "react";
 
-
-export default function NavbarCustom({id}) {
+export default function NavbarCustom({ id }) {
 
     return (
         <>
             <Suspense fallback={<div>Loading...</div>}>
-                <nav class="flex" aria-label="Breadcrumb">
+                <nav class="flex">
                     <ol class="inline-flex items-center space-x-1 md:space-x-3">
                         <li class="inline-flex items-center">
                             <a href='/' class="inline-flex items-center text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:text-gray-400 dark:hover:text-white">

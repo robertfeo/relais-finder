@@ -32,6 +32,7 @@ export default function TablesSpools({ spools }) {
                             <TableHead className="font-primary font-bold">Zweck</TableHead>
                             <TableHead className="font-primary font-bold">Widerstand</TableHead>
                             <TableHead className="font-primary font-bold">Windungen</TableHead>
+                            <TableHead className="font-primary font-bold">Bemerkung</TableHead>
                             <TableHead className="font-primary font-bold">Ort</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -42,6 +43,7 @@ export default function TablesSpools({ spools }) {
                                 <TableCell className="font-thin">{spool.zweck}</TableCell>
                                 <TableCell className="font-thin">{spool.widerstand || '-'}</TableCell>
                                 <TableCell className="font-thin">{spool.windungen || '-'}</TableCell>
+                                <TableCell className="font-thin">{spool.bemerkung || '-'}</TableCell>
                                 <TableCell className="font-thin">{spool.ortASB || '-'}</TableCell>
                             </TableRow>
                         ))}

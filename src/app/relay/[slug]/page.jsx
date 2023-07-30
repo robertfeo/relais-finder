@@ -27,7 +27,7 @@ export default function Page({ params }) {
 
     return (
         <>
-            <div className="container bg-blue-200">
+            <div className="container">
                 <Relay id={query} />
             </div>
         </>

@@ -16,12 +16,12 @@ module.exports = {
       padding: {
         DEFAULT: '1rem',
         sm: '2rem',
-        lg: '4rem',
-        xl: '5rem',
-        '2xl': '5rem',
+        lg: '3rem',
+        xl: '3rem',
+        '2xl': '4rem',
       },
       screens: {
-        "2xl": "1450px",
+        "2xl": "1500px",
       },
     },
     extend: {

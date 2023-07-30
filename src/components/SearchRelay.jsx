@@ -38,7 +38,7 @@ export default function SearchRelay({ q, searchBy }) {
     }
 
     return (
-        <div className="flex flex-col bg-orange-300 w-4/6 space-y-5">
+        <div className="flex flex-col w-4/6 space-y-5">
             {results.map(result => (
                 <RelayCard
                     name={result.name}
