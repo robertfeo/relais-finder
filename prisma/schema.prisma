@@ -1,0 +1,69 @@
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model KurzRelBezeichnung {
+    id           String         @id @unique
+    name         String
+    relaisGruppe RelaisGruppe[]
+    spule        Spule[]
+    kontakt      Kontakt[]
+
+    relais Relais?
+}
+
+model Relais {
+    id  Int    @id @unique @default(autoincrement())
+    typ String
+
+    kurzRelBezeichnung   KurzRelBezeichnung @relation(fields: [kurzRelBezeichnungId], references: [id])
+    kurzRelBezeichnungId String             @unique
+
+    ziehtNicht      String
+    faelltNicht     String
+    faelltZurUnzeit String
+    grundstellung   String
+}
+
+model RelaisGruppe {
+    id         Int    @id @default(autoincrement())
+    name       String
+    sachnummer String
+
+    kurzRelBezeichnung   KurzRelBezeichnung @relation(fields: [kurzRelBezeichnungId], references: [id])
+    kurzRelBezeichnungId String
+
+    siNaName String?
+}
+
+model Spule {
+    id         Int     @id @default(autoincrement())
+    spule_id   String
+    zweck      String
+    widerstand String?
+    windungen  String?
+    bemerkung  String?
+
+    ortASB String?
+
+    kurzRelBezeichnung   KurzRelBezeichnung @relation(fields: [kurzRelBezeichnungId], references: [id])
+    kurzRelBezeichnungId String
+}
+
+model Kontakt {
+    id                   Int     @id @unique @default(autoincrement())
+    kontakt_id           String
+    zweck                String?
+    kontaktSchliestNicht String?
+
+    kurzRelBezeichnung   KurzRelBezeichnung @relation(fields: [kurzRelBezeichnungId], references: [id])
+    kurzRelBezeichnungId String
+
+    ortASB String?
+}
