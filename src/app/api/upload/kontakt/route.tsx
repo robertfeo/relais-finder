@@ -68,8 +68,7 @@ export default async (
                         kontakt_id: row.kontakt_id,
                         zweck: row.zweck,
                         kontaktSchliestNicht: row.kontaktSchliestNicht,
-                        kurzRelBezeichnungId: row.kurzRelBezeichnungId,
-                        ortASB_Id: row.ortASB_Id
+                        kurzRelBezeichnungId: row.kurzRelBezeichnungId
                     }
                 });
             }));

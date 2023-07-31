@@ -1,4 +1,5 @@
 import DataNotAvailable from "@/components/DataNotAvailable";
+import { Button } from "@/components/ui/button";
 
 export default function RelayHeaderDetails({ relayData }) {
 
@@ -21,12 +22,19 @@ export default function RelayHeaderDetails({ relayData }) {
                 return (
                     <div className="text-zinc-600 space-y-5 px-2" key={relais.id}>
 
-                        <div className="bg-zinc-50 py-5 flex flex-col mb-5 rounded-xl pl-3">
+                        <div className="bg-zinc-50 py-5 flex flex-col mb-5 rounded-xl pl-3 relative shadow-sm">
+                            <Button className="bg-zinc-500 absolute top-3 right-3 w-7 h-7 text-center flex justify-center items-center p-1" variant='default'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
+                                </svg>
+                            </Button>
                             <h1 className="text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-5xl dark:text-white">{relais.id}</h1>
                             <p className="text-base font-semibold">{relais.name || '-'}</p>
                         </div>
 
-                        <div className="bg-zinc-50 py-5 flex flex-col mb-5 rounded-xl pl-3">
+
+
+                        <div className="bg-zinc-50 py-5 flex flex-col mb-5 rounded-xl pl-3 shadow-sm">
                             <div class="flex flex-col py-2 space-y-8  dark:bg-gray-800 dark:border-gray-700">
                                 <div className="flex flex-row space-x-5">
                                     <div className="flex flex-col basis-1/2">

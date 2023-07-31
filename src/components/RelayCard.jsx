@@ -1,10 +1,10 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import {
-    Card,
-    CardDescription,
-    CardHeader,
-    CardTitle
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle
 } from '@/components/ui/Card'
 import { Label } from "@/components/ui/label"
 import Link from 'next/link'
@@ -20,13 +20,11 @@ export default function RelayCard({ name, id, type }) {
                         <Label htmlFor="email">Typ: {type}</Label>
                     </CardDescription>
                 </div>
-
                 <div className=''>
                     <Button asChild variant="outline">
                         <Link href={`/relay/${id}`}>Details</Link>
                     </Button>
                 </div>
-
             </CardHeader>
         </Card>
     )
