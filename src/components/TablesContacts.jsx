@@ -31,8 +31,8 @@ export default function TablesContacts({ contacts }) {
                             <TableHead className="w-[50px] font-bold">Kontakt</TableHead>
                             <TableHead className="font-bold">Ort</TableHead>
                             <TableHead className="font-bold">Zweck</TableHead>
-                            <TableHead className="">Kontakt schließt nicht</TableHead>
-                            <TableHead className="">Kontakt öffnet nicht</TableHead>
+                            <TableHead className="font-bold">Kontakt schließt nicht</TableHead>
+                            <TableHead className="w-[100px] lg:w-[300px] font-bold">Kontakt öffnet nicht</TableHead>
                         </TableRow>
                     </TableHeader>
 
