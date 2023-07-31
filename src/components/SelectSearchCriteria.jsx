@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/popover"
 import { cn } from "@/lib/utils"
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const suchkriterien = [
     {
@@ -55,6 +55,11 @@ const suchkriterien = [
 export default function SelectSearchCriteria({ onSearchCriteriaChange }) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
+
+    useEffect(() => {
+        setValue('rel-bezeichnung');
+        onSearchCriteriaChange('rel-bezeichnung');
+    }, [])
 
     return (
         <Popover open={open} onOpenChange={setOpen} className="font-primary">

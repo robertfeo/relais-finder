@@ -3,12 +3,9 @@ import SearchRelay from "@/components/SearchRelay";
 import SelectSearchCriteria from "@/components/SelectSearchCriteria";
 
 import { Input } from "@/components/ui/input";
-import { useRouter } from 'next/navigation';
 import { useState } from "react";
 
 export default function Page() {
-
-  const router = useRouter()
 
   const [query, setQuery] = useState()
   const [searchBy, setSearchBy] = useState()
@@ -44,7 +41,7 @@ export default function Page() {
               placeholder="Eingabe..."
               className="w-[300px] rounded p-2 font-primary"
               value={query}
-              onChange={e => setQuery(e.target.value)}
+              onChange={e => setQuery(e.target.value.length > 0 ? e.target.value : '')}
             />
           </div>
         </div>

@@ -1,4 +1,19 @@
-import { db } from '@/lib/db';
+import { db } from "@/lib/db";
+import { cache } from "react";
+
+const getRelay = cache(async (id: any, where: any) => {
+    "use server"
+    const relay = await db.kurzRelBezeichnung.findMany({
+        where: where ? where : { id: { in: [id], }, },
+        include: {
+            relais: true,
+            relaisGruppe: true,
+            spule: true,
+            kontakt: true,
+        },
+    })
+    return relay;
+})
 
 export async function GET(req: Request) {
 
@@ -65,7 +80,6 @@ export async function GET(req: Request) {
             }
             break;
         case 'sachnummer':
-            //  TODO: This is not working
             where = {
                 relaisGruppe: {
                     some: {
@@ -75,7 +89,6 @@ export async function GET(req: Request) {
             }
             break;
         case 'sina':
-            //  TODO: This is not working
             where = {
                 relaisGruppe: {
                     some: {
@@ -90,19 +103,10 @@ export async function GET(req: Request) {
             return new Response(JSON.stringify([]), { status: 404 })
     }
 
-    try {
-        const results = await db.kurzRelBezeichnung.findMany({
-            where,
-            include: {
-                relaisGruppe: true,
-                relais: true,
-                spule: true,
-                kontakt: true,
-            }
-        })
+    const relayData = await getRelay(undefined, where)
+        .catch(() => {
+            return new Response('Could not fetch relay', { status: 500 });
+        });
 
-        return new Response(JSON.stringify(results), { status: 200 })
-    } catch (error) {
-        return new Response('Could not fetch relais', { status: 500 })
-    }
+    return new Response(JSON.stringify(relayData), { status: 200 });
 }
