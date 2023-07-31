@@ -20,15 +20,16 @@ model KurzRelBezeichnung {
 
 model Relais {
     id  Int    @id @unique @default(autoincrement())
-    typ String
+    typ String?
 
     kurzRelBezeichnung   KurzRelBezeichnung @relation(fields: [kurzRelBezeichnungId], references: [id])
     kurzRelBezeichnungId String             @unique
 
-    ziehtNicht      String
-    faelltNicht     String
-    faelltZurUnzeit String
-    grundstellung   String
+    ziehtNicht      String?
+    faelltNicht     String?
+    faelltZurUnzeit String?
+    ziehtZurUnZeit  String?
+    grundstellung   String?
 }
 
 model RelaisGruppe {
@@ -44,8 +45,8 @@ model RelaisGruppe {
 
 model Spule {
     id         Int     @id @default(autoincrement())
-    spule_id   String
-    zweck      String
+    spule_id   String?
+    zweck      String?
     widerstand String?
     windungen  String?
     bemerkung  String?
@@ -61,6 +62,7 @@ model Kontakt {
     kontakt_id           String
     zweck                String?
     kontaktSchliestNicht String?
+    kontaktOeffnetNicht  String?
 
     kurzRelBezeichnung   KurzRelBezeichnung @relation(fields: [kurzRelBezeichnungId], references: [id])
     kurzRelBezeichnungId String
