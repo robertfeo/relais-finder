@@ -1,3 +1,6 @@
 {
-  "/relay/[slug]/page": "app/relay/[slug]/page.js"
+  "/search/page": "app/search/page.js",
+  "/relay/[slug]/page": "app/relay/[slug]/page.js",
+  "/api/relay/route": "app/api/relay/route.js",
+  "/api/relay/search/route": "app/api/relay/search/route.js"
 }
