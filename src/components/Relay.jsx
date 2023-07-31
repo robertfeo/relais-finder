@@ -12,6 +12,7 @@ export default function Relay({ id }) {
             const fetchData = async () => {
                 const res = await fetch(`/api/relay?id=${id}`)
                 const data = await res.json();
+                console.log(data[0].kontakt);
                 setResult(data);
             }
             fetchData();

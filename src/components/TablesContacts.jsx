@@ -32,6 +32,7 @@ export default function TablesContacts({ contacts }) {
                             <TableHead className="font-bold">Ort</TableHead>
                             <TableHead className="font-bold">Zweck</TableHead>
                             <TableHead className="">Kontakt schließt nicht</TableHead>
+                            <TableHead className="">Kontakt öffnet nicht</TableHead>
                         </TableRow>
                     </TableHeader>
 
@@ -43,6 +44,7 @@ export default function TablesContacts({ contacts }) {
                                     <TableCell className="">{contact.ortASB || '-'}</TableCell>
                                     <TableCell className="">{contact.zweck}</TableCell>
                                     <TableCell className="">{contact.kontaktSchliestNicht || '-'}</TableCell>
+                                    <TableCell className="">{contact.kontaktOeffnetNicht || '-'}</TableCell>
                                 </TableRow>
                             ))
                         }

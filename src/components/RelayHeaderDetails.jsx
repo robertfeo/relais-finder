@@ -17,7 +17,7 @@ export default function RelayHeaderDetails({ relayData }) {
     };
 
     return (
-        <div className="basis-4/12 font-primary antialiased">
+        <div className="basis-3/12 font-primary antialiased">
             {[relayData].map(relais => {
                 return (
                     <div className="text-zinc-600 space-y-5 px-2" key={relais.id}>

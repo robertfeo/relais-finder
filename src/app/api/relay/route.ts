@@ -1,8 +1,6 @@
 import { db } from "@/lib/db";
 import { cache } from "react";
 
-
-
 export async function GET(request: Request, response: Response) {
 
   const getRelay = cache(async (id: any) => {

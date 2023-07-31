@@ -5,7 +5,7 @@ import TablesSpools from './TablesSpools';
 export default function RelayTables({ relayData }) {
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <div class="basis-8/12">
+            <div class="basis-9/12">
                 {[relayData].map(relais => (
                     <div key={relais.id} className="flex flex-col space-y-5">
                         <div class="flex flex-col dark:bg-gray-800 dark:border-gray-700 p-2">

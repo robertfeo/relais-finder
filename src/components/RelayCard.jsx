@@ -1,10 +1,10 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle
+    Card,
+    CardDescription,
+    CardHeader,
+    CardTitle
 } from '@/components/ui/Card'
 import { Label } from "@/components/ui/label"
 import Link from 'next/link'
