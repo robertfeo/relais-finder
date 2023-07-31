@@ -44,7 +44,7 @@ export default function RelayHeaderDetails({ relayData }) {
                                                 <DataNotAvailable />
                                             ) : (
                                                 relayData.kontakt
-                                                    .filter(kontakt => kontakt.kontakt_id.startsWith('A'))
+                                                    .filter(kontakt => kontakt.kontakt_id.startsWith('A') && kontakt.zweck && kontakt.zweck.includes('Anzugsprüfung'))
                                                     .map(kontakt => {
                                                         return (
                                                             <div className="py-0.5">
@@ -64,7 +64,7 @@ export default function RelayHeaderDetails({ relayData }) {
                                                 <DataNotAvailable />
                                             ) : (
                                                 relayData.kontakt
-                                                    .filter(kontakt => kontakt.kontakt_id.startsWith('R'))
+                                                    .filter(kontakt => kontakt.kontakt_id.startsWith('R') && kontakt.zweck && kontakt.zweck.includes('Abfallprüfung'))
                                                     .map(kontakt => {
                                                         return (
                                                             <div className="py-0.5">
@@ -72,6 +72,8 @@ export default function RelayHeaderDetails({ relayData }) {
                                                             </div>
                                                         )
                                                     })
+
+
                                             )}
                                         </div>
                                     </div>
