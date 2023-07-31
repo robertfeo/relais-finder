@@ -1,8 +1,6 @@
 import { db } from "@/lib/db";
 import { cache } from "react";
 
-
-
 export async function GET(req: Request) {
 
     const getRelay = cache(async (id: any, where: any) => {
@@ -36,7 +34,7 @@ export async function GET(req: Request) {
         case 'typ':
             where = {
                 relais: {
-                    typ: { startsWith: query }
+                    typ: { contains: query }
                 }
             }
             break;

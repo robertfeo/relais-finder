@@ -1399,6 +1399,9 @@ input:checked + .toggle-bg{
 .flex-wrap{
   flex-wrap: wrap;
 }
+.flex-wrap-reverse{
+  flex-wrap: wrap-reverse;
+}
 .items-start{
   align-items: flex-start;
 }
@@ -1501,6 +1504,11 @@ input:checked + .toggle-bg{
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+.space-y-10 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
 }
 .divide-x > :not([hidden]) ~ :not([hidden]){
   --tw-divide-x-reverse: 0;
@@ -2333,6 +2341,9 @@ input:checked + .toggle-bg{
 }
 .pt-4{
   padding-top: 1rem;
+}
+.pb-5{
+  padding-bottom: 1.25rem;
 }
 .text-left{
   text-align: left;

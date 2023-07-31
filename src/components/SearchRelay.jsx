@@ -18,12 +18,17 @@ export default function SearchRelay({ q, searchBy }) {
             fetchData();
         }
         else {
+            toast({
+                title: "Keine Eingabe",
+                description: "Bitte geben Sie einen Suchbegriff ein.",
+                variant: "default",
+            })
             setResults([]);
         }
     }, [q, searchBy]);
 
     return (
-        <div className="flex flex-col w-4/6 space-y-5">
+        <div className="flex w-4/6 space-y-5 flex-col">
             {results.map(result => (
                 <RelayCard
                     name={result.name}

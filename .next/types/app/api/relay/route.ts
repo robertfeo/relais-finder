@@ -1,4 +1,4 @@
-// File: D:\Wissen\Freizeit\Programmieren\Web Applications\Fullstack\relais-finder\src\app\api\relay\route.tsx
+// File: D:\Wissen\Freizeit\Programmieren\Web Applications\Fullstack\relais-finder\src\app\api\relay\route.ts
 import * as entry from '../../../../../src/app/api/relay/route.js'
 import type { NextRequest } from 'next/server.js'
 

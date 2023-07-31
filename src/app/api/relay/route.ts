@@ -1,21 +1,24 @@
 import { db } from "@/lib/db";
 import { cache } from "react";
 
-const getRelay = cache(async (id: any) => {
-  "use server"
-  const relay = await db.kurzRelBezeichnung.findMany({
-    where: { id: { in: [id], }, },
-    include: {
-      relais: true,
-      relaisGruppe: true,
-      spule: true,
-      kontakt: true,
-    },
-  })
-  return relay;
-})
+
 
 export async function GET(request: Request, response: Response) {
+
+  const getRelay = cache(async (id: any) => {
+    "use server"
+    const relay = await db.kurzRelBezeichnung.findMany({
+      where: { id: { in: [id], }, },
+      include: {
+        relais: true,
+        relaisGruppe: true,
+        spule: true,
+        kontakt: true,
+      },
+    })
+    return relay;
+  })
+  
   const url = new URL(request.url)
   const id = url.searchParams.get('id') || '';
 
