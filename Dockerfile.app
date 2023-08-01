@@ -1,5 +1,8 @@
-#syntax=docker/dockerfile:1.4
 FROM node:18-alpine AS base
+ARG POSTGRES_USER
+ARG POSTGRES_PASSWORD
+ARG POSTGRES_DB
+ARG POSTGRES_PORT
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -13,6 +16,8 @@ RUN \
     if [ -f package-lock.json ]; then npm install; \
     else echo "Lockfile not found." && exit 1; \
     fi
+
+
 
 # Update npm to version 9.8.1
 RUN npm install -g npm@9.8.1
@@ -31,6 +36,10 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
+ENV POSTGRES_USER=$POSTGRES_USER
+ENV POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+ENV POSTGRES_DB=$POSTGRES_DB
+ENV POSTGRES_PORT=$POSTGRES_PORT
 
 RUN \
     addgroup --system --gid 1001 nodejs; \

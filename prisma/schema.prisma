@@ -6,7 +6,7 @@ generator client {
 datasource db {
     provider = "postgresql"
     //url      = env("DATABASE_URL") // local
-    url      = env("postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:{PORT}/{POSTGRES_DB}?schema=public")
+    url      = env("postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:{POSTGRES_PORT}/{POSTGRES_DB}?schema=public")
 }
 
 model KurzRelBezeichnung {
