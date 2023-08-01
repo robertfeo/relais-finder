@@ -2,6 +2,7 @@ version: "3.9"
 services:
   wb-service:
     container_name: web-service
+    hostname: web
     build:
       context: .
       dockerfile: Dockerfile.app
@@ -17,15 +18,16 @@ services:
     image: postgres:latest
     restart: always
     container_name: database-service
+    hostname: db
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=relais-finder
+      - POSTGRES_DB=postgres
     ports:
       - "5432:5432"
     volumes:
-      - db-data:/var/lib/postgresql/data/
-      - ./scripts:/docker-entrypoint-initdb.d
+      - relais-finder-db-data:/var/lib/postgresql/data/
+      - ./docker-entrypoint-initdb.d/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - relais-finder-network
     healthcheck:
@@ -36,6 +38,8 @@ services:
   adminer:
     image: adminer
     restart: always
+    hostname: adminer
+    container_name: adminer-service
     ports:
       - 8080:8080
 
