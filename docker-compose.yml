@@ -1,0 +1,30 @@
+version: "3.9"
+services:
+  web-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database-service
+    networks:
+      - relais-finder-network
+
+  database-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+    networks:
+      - relais-finder-network
+
+networks:
+  relais-finder-network:
+    driver: bridge
+
+volumes:
+  db-data:
