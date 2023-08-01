@@ -28,6 +28,9 @@ WORKDIR /app
 COPY --from=deps --link /app/node_modules ./node_modules
 COPY --link  . .
 
+# Generate Prisma client
+RUN npx prisma generate
+
 # Build the application using npm
 RUN npm run build
 
@@ -60,6 +63,3 @@ ENV PORT 3000
 ENV HOSTNAME localhost
 
 CMD ["node", "server.js"]
-
-# Generate Prisma client
-RUN npx prisma generate
