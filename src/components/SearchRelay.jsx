@@ -11,7 +11,7 @@ export default function SearchRelay({ q, searchBy }) {
     useEffect(() => {
         if (q) {
             const fetchData = async () => {
-                const res = await fetch(`/api/relay/search?q=${q}&searchBy=${searchBy}`, { next: { revalidate: 1 } })
+                const res = await fetch(`/api/relay/search?q=${q}&searchBy=${searchBy}`)
                 const data = await res.json();
                 setResults(data);
             }

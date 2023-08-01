@@ -35,19 +35,19 @@ export default function RelayHeaderDetails({ relayData }) {
 
 
                         <div className="bg-zinc-50 py-5 flex flex-col mb-5 rounded-xl pl-3 shadow-sm">
-                            <div class="flex flex-col py-2 space-y-8  dark:bg-gray-800 dark:border-gray-700">
+                            <div className="flex flex-col py-2 space-y-8  dark:bg-gray-800 dark:border-gray-700">
                                 <div className="flex flex-row space-x-5">
                                     <div className="flex flex-col basis-1/2">
                                         <h1 className="text-lg font-semibold leading-none tracking-tight md:text-lg lg:text-lg dark:text-white font-primary mb-1">Anzugsprüfung</h1>
                                         <div className="flex flex-row justify-left flex-wrap">
                                             {!relayData.kontakt || relayData.kontakt.length === 0 ? (
-                                                <DataNotAvailable />
+                                                <DataNotAvailable key={relayData.kontakt_id}/>
                                             ) : (
                                                 relayData.kontakt
                                                     .filter(kontakt => kontakt.kontakt_id.startsWith('A') && kontakt.zweck && kontakt.zweck.includes('Anzugsprüfung'))
                                                     .map(kontakt => {
                                                         return (
-                                                            <div className="py-0.5">
+                                                            <div className="py-0.5" key={kontakt.kontakt_id}>
                                                                 <span className={getRandomColorClass() + " text-xs font-semibold mr-1 px-2.5 py-0.5 rounded-full"}>{kontakt.kontakt_id}</span>
                                                             </div>
                                                         )
@@ -67,7 +67,7 @@ export default function RelayHeaderDetails({ relayData }) {
                                                     .filter(kontakt => kontakt.kontakt_id.startsWith('R') && kontakt.zweck && kontakt.zweck.includes('Abfallprüfung'))
                                                     .map(kontakt => {
                                                         return (
-                                                            <div className="py-0.5">
+                                                            <div className="py-0.5" key={kontakt.id}>
                                                                 <span className={getRandomColorClass() + " text-xs font-semibold mr-1 px-2.5 py-0.5 rounded-full"}>{kontakt.kontakt_id}</span>
                                                             </div>
                                                         )
@@ -158,7 +158,7 @@ export default function RelayHeaderDetails({ relayData }) {
                                     ) : (
                                         relais.relaisGruppe.map(gruppe => {
                                             return (
-                                                <div className="flex flex-col">
+                                                <div className="flex flex-col" key={gruppe.id}>
                                                     <h2 className="text-base font-bold leading-none tracking-tight md:text-base lg:text-base dark:text-white font-primary mb-2">{gruppe.name}</h2>
                                                     <p className="text-base">Sachnummer: {gruppe.sachnummer}</p>
                                                     <p className="text-base">Sicherheitsnachweis: {gruppe.siNaName}</p>

@@ -1,9 +1,17 @@
-"use client"
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
+
+
   const router = useRouter()
+
+  const [panelId, setPanelId] = useState(null);
+
+  useEffect(() => {
+    setPanelId(`panel-${Math.random()}`);
+  }, []);
+
 
   const handleClick = () => {
     router.push('/search')
@@ -25,7 +33,7 @@ export default function Home() {
             </div>
           </div>
 
-          <Button onClick={handleClick} variant="outline">
+          <Button onClick={handleClick} variant="outline" aria-controls={panelId}>
             Suchen
           </Button>
         </div>
