@@ -10,6 +10,11 @@ module.exports = {
     './src/**/*.{js,jsx}',
     "./node_modules/flowbite-react/**/*.js",
   ],
+  safelist: [
+    'bg-red-500',
+    'text-3xl',
+    'lg:text-4xl',
+  ],
   theme: {
     container: {
       center: true,

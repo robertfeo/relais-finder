@@ -1,6 +1,5 @@
 {
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/search/page": "app/search/page.js",
-  "/api/relay/route": "app/api/relay/route.js",
-  "/relay/[slug]/page": "app/relay/[slug]/page.js"
+  "/relay/[slug]/page": "app/relay/[slug]/page.js",
+  "/api/relay/route": "app/api/relay/route.js"
 }

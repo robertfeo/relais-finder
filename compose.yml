@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+  wb-service:
+    container_name: web-service
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    ports:
+      - "3000:3000"
+    depends_on:
+      db-service:
+        condition: service_healthy
+    networks:
+      - relais-finder-network
+
+  db-service:
+    image: postgres:latest
+    restart: always
+    container_name: database-service
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=relais-finder
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data/
+      - ./scripts:/docker-entrypoint-initdb.d
+    networks:
+      - relais-finder-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+networks:
+  relais-finder-network:
+    driver: bridge
+
+volumes:
+  relais-finder-db-data:

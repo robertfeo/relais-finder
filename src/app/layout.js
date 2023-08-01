@@ -1,4 +1,3 @@
-import { Toaster } from '@/components/ui/toaster'
 import { Inter } from 'next/font/google'
 
 import './globals.css'
@@ -18,7 +17,6 @@ export default function RootLayout({ children }) {
       <head />
       <body suppressHydrationWarning={true}>
         <main>{children}</main>
-        <Toaster />
       </body>
     </html>
   )

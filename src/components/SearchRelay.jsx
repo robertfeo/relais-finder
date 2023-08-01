@@ -1,10 +1,7 @@
-import { useToast } from "@/components/ui/use-toast";
 import { useEffect, useState } from "react";
 import RelayCard from "./RelayCard";
 
 export default function SearchRelay({ q, searchBy }) {
-
-    const { toast } = useToast()
 
     const [results, setResults] = useState([]);
 
@@ -16,14 +13,6 @@ export default function SearchRelay({ q, searchBy }) {
                 setResults(data);
             }
             fetchData();
-        }
-        else {
-            toast({
-                title: "Keine Eingabe",
-                description: "Bitte geben Sie einen Suchbegriff ein.",
-                variant: "default",
-            })
-            setResults([]);
         }
     }, [q, searchBy]);
 
