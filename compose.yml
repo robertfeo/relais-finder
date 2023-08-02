@@ -5,31 +5,27 @@ services:
     hostname: web
     build:
       context: .
-      dockerfile: Dockerfile.app
-      args:
-        POSTGRES_USER: admin
-        POSTGRES_PASSWORD: 0000
-        POSTGRES_DB: relais-finder
-        POSTGRES_PORT: 5432
-    volumes:
-      - .env:/app/.env
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - 3000:3000
     depends_on:
       db-service:
         condition: service_healthy
+    environment:
+      - DATABASE_URL="postgresql://admin:0000@localhost:5432/relais-finder?schema=public"
     networks:
       - relais-finder-network
-    
+
   db-service:
     image: postgres:latest
     restart: always
     container_name: database-service
     hostname: db
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=0000
+      - POSTGRES_DB=relais-finder
+      - POSTGRES_PORT=5432
     ports:
       - "5432:5432"
     volumes:
@@ -49,6 +45,9 @@ services:
     container_name: adminer-service
     ports:
       - 8080:8080
+    depends_on:
+      db-service:
+        condition: service_healthy
 
 networks:
   relais-finder-network:

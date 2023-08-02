@@ -5,8 +5,8 @@ generator client {
 
 datasource db {
     provider = "postgresql"
-    //url      = env("DATABASE_URL") // local
-    url      = env("postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@localhost:{POSTGRES_PORT}/{POSTGRES_DB}?schema=public")
+    //url      = "postgresql://admin:0000@db:5432/relais-finder?schema=public"
+    url      = "postgresql://admin:0000@localhost:5432/relais-finder?schema=public"
 }
 
 model KurzRelBezeichnung {
