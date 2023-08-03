@@ -42,7 +42,7 @@ export default function TablesContacts({ contacts }) {
                                 <TableRow className="text-zinc-600" key={contact.kontakt_id}>
                                     <TableCell className="font-medium">{contact.kontakt_id}</TableCell>
                                     <TableCell className="">{contact.ortASB || '-'}</TableCell>
-                                    <TableCell className="">{contact.zweck}</TableCell>
+                                    <TableCell className="">{decodeURIComponent(contact.zweck)}</TableCell>
                                     <TableCell className="">{contact.kontaktSchliestNicht || '-'}</TableCell>
                                     <TableCell className="">{contact.kontaktOeffnetNicht || '-'}</TableCell>
                                 </TableRow>

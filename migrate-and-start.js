@@ -1,7 +1,7 @@
 const { spawn } = require('child_process');
 const { Client } = require('pg');
 
-const prisma = spawn('npx', ['prisma', 'db', 'push', '--schema', '/app/prisma/schema.prisma']);
+const prisma = spawn('npx', ['prisma', 'db', 'push', '--schema', '/app/prisma/schema.prisma', '--accept-data-loss']);
 
 prisma.stdout.on('data', (data) => {
     console.log(`Info: ${data}`);
@@ -22,42 +22,84 @@ prisma.on('close', (code) => {
         client.connect();
 
         const query = `
-            CREATE TRIGGER trg_kontakt
-                BEFORE INSERT OR UPDATE OF kontakt_id, zweck, "kontaktSchliestNicht", "kurzRelBezeichnungId", "ortASB", "kontaktOeffnetNicht"
+        DO $$
+        BEGIN
+            IF EXISTS (
+                SELECT 1
+                FROM information_schema.triggers
+                WHERE event_object_table = 'Kontakt'
+                AND trigger_name = 'trg_kontakt'
+            ) THEN
+                DROP TRIGGER trg_kontakt ON public."Kontakt";
+                CREATE TRIGGER trg_kontakt
+                BEFORE INSERT
                 ON public."Kontakt"
                 FOR EACH ROW
                 EXECUTE FUNCTION public.f_kontakt();
-            
-            CREATE TRIGGER trg_kurzRelBez
-                BEFORE INSERT OR UPDATE OF name
+            END IF;
+
+            IF EXISTS (
+                SELECT 1
+                FROM information_schema.triggers
+                WHERE event_object_table = 'KurzRelBezeichnung'
+                AND trigger_name = 'trg_kurzRelBez'
+            ) THEN
+                DROP TRIGGER trg_kurzrelbez ON public."KurzRelBezeichnung";
+                CREATE TRIGGER trg_kurzRelBez
+                BEFORE INSERT
                 ON public."KurzRelBezeichnung"
                 FOR EACH ROW
                 EXECUTE FUNCTION public."f_kurzRelBez"();
-            
-            CREATE TRIGGER trg_relais
-                BEFORE INSERT OR UPDATE OF typ, "kurzRelBezeichnungId", "ziehtNicht", "faelltNicht", "faelltZurUnzeit", "ziehtZurUnZeit", grundstellung
+            END IF;
+
+            IF EXISTS (
+                SELECT 1
+                FROM information_schema.triggers
+                WHERE event_object_table = 'Relais'
+                AND trigger_name = 'trg_relais'
+            ) THEN
+                DROP TRIGGER trg_relais ON public."Relais";
+                CREATE TRIGGER trg_relais
+                BEFORE INSERT
                 ON public."Relais"
                 FOR EACH ROW
                 EXECUTE FUNCTION public.f_relais();
+            END IF;
 
-            CREATE TRIGGER trg_relaisGruppe
-                BEFORE INSERT OR UPDATE OF name, sachnummer, "kurzRelBezeichnungId", "siNaName"
+            IF EXISTS (
+                SELECT 1
+                FROM information_schema.triggers
+                WHERE event_object_table = 'RelaisGruppe'
+                AND trigger_name = 'trg_ortASB'
+            ) THEN
+                DROP TRIGGER trg_relaisGruppe ON public."RelaisGruppe";
+                CREATE TRIGGER trg_relaisGruppe
+                BEFORE INSERT
                 ON public."RelaisGruppe"
                 FOR EACH ROW
                 EXECUTE FUNCTION public."f_relaisGruppe"();
+            END IF;
 
-            CREATE TRIGGER trg_spule
-                BEFORE INSERT OR UPDATE OF spule_id, zweck, widerstand, windungen, bemerkung, "ortASB", "kurzRelBezeichnungId"
+            IF EXISTS (
+                SELECT 1
+                FROM information_schema.triggers
+                WHERE event_object_table = 'Spule'
+                AND trigger_name = 'trg_spule'
+            ) THEN
+                DROP TRIGGER trg_spule ON public."Spule";
+                CREATE TRIGGER trg_spule
+                BEFORE INSERT
                 ON public."Spule"
                 FOR EACH ROW
                 EXECUTE FUNCTION public.f_spule();
+            END IF;
+        END
+        $$;
         `;
 
         client.query(query, (err, res) => {
             if (err) {
                 console.error(`Trigger Error: ${err}`);
-            } else {
-                console.log(`Trigger Success: ${res}`);
             }
             client.end();
 

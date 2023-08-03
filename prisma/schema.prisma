@@ -6,7 +6,8 @@ generator client {
 datasource db {
     provider = "postgresql"
     //url      = "postgresql://admin:0000@db:5432/relais-finder?schema=public"
-    url      = "postgresql://admin:0000@localhost:5432/relais-finder?schema=public"
+    //url      = "postgresql://admin:0000@localhost:5432/relais-finder?schema=public"
+    url      = env("DATABASE_URL")
 }
 
 model KurzRelBezeichnung {

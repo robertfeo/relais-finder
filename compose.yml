@@ -12,7 +12,7 @@ services:
       db-service:
         condition: service_healthy
     environment:
-      - DATABASE_URL="postgresql://admin:0000@localhost:5432/relais-finder?schema=public"
+      - DATABASE_URL=postgresql://admin:0000@db:5432/relais-finder?schema=public
     networks:
       - relais-finder-network
 

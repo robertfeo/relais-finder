@@ -1,22 +1,28 @@
 # Stage 1: base
-FROM node:18-alpine AS base
+FROM node:18-buster-slim AS base
 
 # Add these lines at the beginning of your Dockerfile
 ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+
+# Update npm to the latest version
+RUN npm install -g npm@latest
+
+# Install OpenSSL
+RUN apt-get update -y && apt-get install -y openssl
 
 # Install dependencies only when needed
 # Stage 2: deps
 FROM base AS deps
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
+#RUN apt add --no-cache libc6-compat
 
 WORKDIR /app
 
 # Copy package files and install dependencies with npm
 COPY package.json package-lock.json* ./
 COPY migrate-and-start.js ./
-COPY prisma ./prisma
 COPY prisma ./prisma
 
 RUN \
@@ -42,7 +48,7 @@ RUN chmod +x migrate-and-start.js
 
 RUN npx prisma generate
 
-RUN npm install pg
+#RUN npm install pg
 
 # Build the application
 RUN npm run build
@@ -58,7 +64,6 @@ RUN \
     addgroup --system --gid 1001 nodejs; \
     adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder --chown=nextjs:nodejs /app/migrate-and-start.js ./migrate-and-start.js
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
@@ -66,7 +71,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/package.json ./package.json
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 
 # Move ownership change to here
-RUN chown -R nextjs:nodejs /app
+#RUN chown -R nextjs:nodejs /app/.next
 
 USER nextjs
 
