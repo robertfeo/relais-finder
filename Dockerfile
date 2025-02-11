@@ -1,12 +1,12 @@
 # Stage 1: base
-FROM node:18-buster-slim AS base
+FROM node:20.15.0-buster-slim AS base
 
 # Add these lines at the beginning of your Dockerfile
 ARG DATABASE_URL
 ENV DATABASE_URL=$DATABASE_URL
 
 # Update npm to the latest version
-RUN npm install -g npm@latest
+#RUN npm install -g npm@latest
 
 # Install OpenSSL
 RUN apt-get update -y && apt-get install -y openssl
